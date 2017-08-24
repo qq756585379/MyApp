@@ -9,10 +9,12 @@ public class LoginBean {
     /**
      * code : 1
      * msg : 登录成功
+     * status：sucess
      */
 
     private int code;
     private String msg;
+    private String status;
     private User body;
 
     public int getCode() {
@@ -31,6 +33,14 @@ public class LoginBean {
         this.msg = msg;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public User getBody() {
         return body;
     }
@@ -40,20 +50,23 @@ public class LoginBean {
     }
 
     public static class User {
-        private int juuid;
+        private int id;
         private String userName;
+        private String password;
         private String userIcon;
         private String phone;
+        private String sex;
         private String area;
-        private String abstracts;
         private String message;
+        private String updateTime;
+        private String createTime;
 
-        public int getJuuid() {
-            return juuid;
+        public int getId() {
+            return id;
         }
 
-        public void setJuuid(int juuid) {
-            this.juuid = juuid;
+        public void setId(int id) {
+            this.id = id;
         }
 
         public String getUserName() {
@@ -62,6 +75,14 @@ public class LoginBean {
 
         public void setUserName(String userName) {
             this.userName = userName;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
         }
 
         public String getUserIcon() {
@@ -80,6 +101,14 @@ public class LoginBean {
             this.phone = phone;
         }
 
+        public String getSex() {
+            return sex;
+        }
+
+        public void setSex(String sex) {
+            this.sex = sex;
+        }
+
         public String getArea() {
             return area;
         }
@@ -88,20 +117,28 @@ public class LoginBean {
             this.area = area;
         }
 
-        public String getAbstracts() {
-            return abstracts;
-        }
-
-        public void setAbstracts(String abstracts) {
-            this.abstracts = abstracts;
-        }
-
         public String getMessage() {
             return message;
         }
 
         public void setMessage(String message) {
             this.message = message;
+        }
+
+        public String getUpdateTime() {
+            return updateTime;
+        }
+
+        public void setUpdateTime(String updateTime) {
+            this.updateTime = updateTime;
+        }
+
+        public String getCreateTime() {
+            return createTime;
+        }
+
+        public void setCreateTime(String createTime) {
+            this.createTime = createTime;
         }
     }
 

@@ -10,6 +10,9 @@ import org.apache.ibatis.annotations.Param;
  **/
 public interface DaoUtils {
 
-    public User queryUser(@Param("username") String userName, @Param("password") String passWord);
+    User queryUser(@Param("username") String userName, @Param("password") String passWord);
 
+    User queryUserByPhone(@Param("phone") String phone);
+
+    void insertSingle(User user);
 }

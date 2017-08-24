@@ -1,10 +1,10 @@
 package com.myapp.utils;
 
 import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import java.io.IOException;
 import java.io.Reader;
 
 /**
@@ -14,20 +14,19 @@ import java.io.Reader;
  **/
 public class MybatisUtils {
 
-    public static SqlSession getSqlSession() {
+    public static SqlSessionFactory getSqlSessionFactory() {
         String resource = "mybatis-config.xml";
         Reader reader = null;
-        SqlSession session = null;
+        SqlSessionFactory sqlSessionFactory = null;
         try {
             reader = Resources.getResourceAsReader(resource);
             SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
-            SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBuilder.build(reader);
-            session = sqlSessionFactory.openSession(true);
-        } catch (Exception e) {
+            sqlSessionFactory = sqlSessionFactoryBuilder.build(reader);
+        } catch (IOException e) {
             System.out.println("SqlSession获取异常！" + e.toString());
             e.printStackTrace();
         } finally {
-            return session;
+            return sqlSessionFactory;
         }
     }
 }

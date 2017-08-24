@@ -6,11 +6,20 @@
 
  -->
 <mapper namespace="com.myapp.dao.DaoUtils">
+
     <select id="queryUser" parameterType="com.myapp.bean.User" resultType="com.myapp.bean.User" useCache="false">
-        <![CDATA[
-
 		select * from tb_user t where t.userName = #{username} and t.password = #{password}
-
-        ]]>
     </select>
+
+
+    <select id="queryUserByPhone" parameterType="com.myapp.bean.User" resultType="com.myapp.bean.User" useCache="false">
+		select * from tb_user t where t.phone = #{phone}
+    </select>
+
+
+    <insert id="insertSingle" parameterType="com.myapp.bean.User" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_user(phone,password,updateTime,createTime) values(#{phone},#{password},#{updateTime},#{createTime})
+    </insert>
+
+
 </mapper>

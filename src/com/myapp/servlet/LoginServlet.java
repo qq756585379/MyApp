@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -43,10 +44,13 @@ public class LoginServlet extends HttpServlet {
         userName = new String(userName.getBytes("ISO-8859-1"), "UTF-8");
         password = new String(password.getBytes("ISO-8859-1"), "UTF-8");
 
-        System.out.println("name" + userName + "   pwa" + password);
+        HttpSession session = req.getSession();
+        session.setMaxInactiveInterval(172800);
+
+        System.out.println("name" + userName + "   pwa" + password + "session = " + session.getId());
 
         //查询数据库
-        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        SqlSession sqlSession = MybatisUtils.getSqlSessionFactory().openSession(true);
         DaoUtils dao = sqlSession.getMapper(DaoUtils.class);
         User user = dao.queryUser(userName, password);
         System.out.println(user);
@@ -58,23 +62,27 @@ public class LoginServlet extends HttpServlet {
             System.out.println("---------------用户存在且密码正确，可以登录");
             lb.setCode(200);
             lb.setMsg("登录成功！");
+            lb.setStatus("success");
             LoginBean.User bb = new LoginBean.User();
-            bb.setJuuid(user.getJuuid());
-            bb.setPhone(user.getPhone());
-            bb.setUserName(user.getUserName());
-            bb.setUserIcon(user.getUserIcon());
-            bb.setArea(user.getArea());
-            bb.setAbstracts(user.getAbstracts());
-            bb.setMessage(user.getMessage());
+            bb.setId(user.getId());
+            bb.setPhone((user.getPhone() == null ? "" : user.getPhone()));
+            bb.setUserName(user.getUserName() == null ? "用户" + user.getId() : user.getUserName());
+            String img = "http://file.juzimi.com/imagecache/avatar_50x50/pictures/201708/picture-1152697_1306778830.jpg";
+            bb.setUserIcon(user.getUserIcon() == null ? img : user.getUserIcon());
+            bb.setSex(user.getSex());
+            bb.setArea(user.getArea() == null ? "" : user.getArea());
+            bb.setMessage(user.getMessage() == null ? "这家伙很懒什么也没留下~" : user.getMessage());
             lb.setBody(bb);
         } else {
             System.out.println("---------------用户名或密码错误");
             lb.setCode(201);
             lb.setMsg("用户名或密码错误！");
+            lb.setStatus("false");
         }
         //返回的Json数据
         Gson gson = new Gson();
         String json = gson.toJson(lb);
         PrintUtil.print(json, resp);
     }
+
 }

@@ -6,20 +6,23 @@ package com.myapp.bean;
  * @Description:
  **/
 public class User {
-    private int juuid;
+    private int id;
     private String userName;
-    private String user_icon;
+    private String password;
+    private String userIcon;
     private String phone;
+    private String sex;
     private String area;
-    private String abstracts;
     private String message;
+    private String updateTime;
+    private String createTime;
 
-    public int getJuuid() {
-        return juuid;
+    public int getId() {
+        return id;
     }
 
-    public void setJuuid(int juuid) {
-        this.juuid = juuid;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUserName() {
@@ -30,12 +33,20 @@ public class User {
         this.userName = userName;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getUserIcon() {
-        return user_icon;
+        return userIcon;
     }
 
     public void setUserIcon(String userIcon) {
-        this.user_icon = userIcon;
+        this.userIcon = userIcon;
     }
 
     public String getPhone() {
@@ -46,20 +57,20 @@ public class User {
         this.phone = phone;
     }
 
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
     public String getArea() {
         return area;
     }
 
     public void setArea(String area) {
         this.area = area;
-    }
-
-    public String getAbstracts() {
-        return abstracts;
-    }
-
-    public void setAbstracts(String abstracts) {
-        this.abstracts = abstracts;
     }
 
     public String getMessage() {
@@ -70,16 +81,35 @@ public class User {
         this.message = message;
     }
 
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "juuid=" + juuid +
+                "id=" + id +
                 ", userName='" + userName + '\'' +
-                ", userIcon='" + user_icon + '\'' +
+                ", password='" + password + '\'' +
+                ", userIcon='" + userIcon + '\'' +
                 ", phone='" + phone + '\'' +
+                ", sex='" + sex + '\'' +
                 ", area='" + area + '\'' +
-                ", abstracts='" + abstracts + '\'' +
                 ", message='" + message + '\'' +
+                ", updateTime='" + updateTime + '\'' +
+                ", createTime='" + createTime + '\'' +
                 '}';
     }
 }
